@@ -84,6 +84,10 @@
         <!-- Généré par JS -->
     </div>
 
+    <button onclick="resetChecklist()" style="margin-top:50px; background:#ffab91; color:white; border:none; padding:10px; border-radius:5px; cursor:pointer; width:100%;">
+    ⚠️ Réinitialiser la liste (efface tout et recharge le fichier HTML)
+</button>
+
 </div>
 
 <script>
@@ -97,8 +101,11 @@
         "Toilette": [
             "Déodorant", "gel douche", "shampooing", "brosse à dent", "baume à lèvres", 
             "rasoir", "mousse à raser", "crème solaire", "mouchoirs", "dentifrice", 
-            "lunettes de soleil", "Comprimés contre la diarrhée", "Trousse de premiers secours", 
-            "Comprimés contre la fièvre", "Répulsif anti-moustiques pour vêtements", 
+            "lunettes de soleil", "cotons tiges"
+        ],
+        "Medicaments": [
+            "Comprimés contre la diarrhée", "Trousse de premiers secours", 
+            "fièvre, mal de tête : doliprane", "mal de ventre : spasfon", "Répulsif anti-moustiques pour vêtements", 
             "Répulsif anti-moustiques / spray", "Guérison des piqûres d'insectes"
         ],
         "Sacs": [
@@ -193,6 +200,13 @@
 
     function save() {
         localStorage.setItem('panamaChecklist', JSON.stringify(checklist));
+    }
+
+    function resetChecklist() {
+        if(confirm("Attention : cela va effacer tes cases cochées et recharger la liste du fichier HTML. Continuer ?")) {
+            localStorage.removeItem('panamaChecklist');
+            location.reload();
+        }
     }
 
     render();
